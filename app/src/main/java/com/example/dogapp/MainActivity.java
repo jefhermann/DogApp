@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerItemListener<Menu> {
 
     ArrayList<Menu> menu;
 
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Create adapter passing in the sample user data
         MenusAdapter adapter = new MenusAdapter(menu);
+        adapter.setListener(this);
+
         // Attach the adapter to the recyclerview to populate items
         rvMenus.setAdapter(adapter);
         // Set layout manager to position the items
@@ -38,4 +42,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void itemClick(Menu menu, int position) {
+        Toast.makeText(this, menu.getNomMenu(), Toast.LENGTH_LONG).show();
+        switch (position){
+            case 0: {
+                Intent i = new Intent(MainActivity.this, SplashActivity.class);
+                startActivity(i);
+
+                break;
+            }
+            case 1: {
+                Intent i = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(i);
+                break;
+            }
+        }
+    }
 }

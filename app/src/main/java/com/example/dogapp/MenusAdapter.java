@@ -17,6 +17,8 @@ import java.util.ArrayList;
 // Note that we specify the custom ViewHolder which gives us access to our views
 public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.ViewHolder> {
 
+    private RecyclerItemListener<Menu> listener;
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,9 +34,9 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         // Get the data model based on position
-        Menu menus = mMenus.get(position);
+        final Menu menus = mMenus.get(position);
 
         // Set item views based on your views and data model
         ImageView imageView = holder.nomImageView;
@@ -42,6 +44,12 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.ViewHolder> 
         TextView textView = holder.nomTextView;
         textView.setText(menus.getNomMenu());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.itemClick(menus, position);
+            }
+        });
     }
 
     @Override
@@ -75,5 +83,9 @@ public class MenusAdapter extends RecyclerView.Adapter<MenusAdapter.ViewHolder> 
     // Pass in the contact array into the constructor
     public MenusAdapter(ArrayList<Menu> menus) {
         mMenus = menus;
+    }
+
+    public void setListener(RecyclerItemListener listener) {
+        this.listener = listener;
     }
 }
