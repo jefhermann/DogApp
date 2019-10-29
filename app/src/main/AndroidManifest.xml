@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LogInActivity"></activity>
+        <activity android:name=".DeleteDogActivity"></activity>
+        <activity android:name=".EditDogActivity" />
+        <activity android:name=".ViewDogActivity" />
+        <activity android:name=".LogInActivity" />
         <activity android:name=".AddDogActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>

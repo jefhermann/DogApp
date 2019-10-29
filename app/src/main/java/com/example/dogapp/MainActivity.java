@@ -47,13 +47,23 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemListe
         Toast.makeText(this, menu.getNomMenu(), Toast.LENGTH_LONG).show();
         switch (position){
             case 0: {
-                Intent i = new Intent(MainActivity.this, SplashActivity.class);
+                Intent i = new Intent(MainActivity.this, AddDogActivity.class);
                 startActivity(i);
 
                 break;
             }
             case 1: {
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
+                Intent i = new Intent(MainActivity.this, ViewDogActivity.class);
+                startActivity(i);
+                break;
+            }
+            case 2: {
+                Intent i = new Intent(MainActivity.this, EditDogActivity.class);
+                startActivity(i);
+                break;
+            }
+            case 3: {
+                Intent i = new Intent(MainActivity.this, DeleteDogActivity.class);
                 startActivity(i);
                 break;
             }
